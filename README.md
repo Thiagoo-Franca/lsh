@@ -14,6 +14,6 @@ O código realiza testes com palavras geradas a partir do alfabeto {a, b, c, d, 
 4. O output aparecera no final da execução
 
 # Para executar o codigo replit:
-1. Acesse o link "https://replit.com/@tfranca1/lsh"
+1. Acesse o link "https://replit.com/join/lzlxrhnjzk-tfranca1"
 2. Clique em "run"
 3. O output vai está ao lado direito

@@ -1,5 +1,5 @@
 # Implementacao algoritmo Locality-sensitive hashing
-# O codigo contem testes que são palavras tal que o alfabelto é {a,b,c,d,e,f} e o tamanho de cada palavra é 10 
+ O codigo contem testes que são palavras tal que o alfabelto é {a,b,c,d,e,f} e o tamanho de cada palavra é 10 
 
 # Para rodar o codigo localmente usando terminal:
 1. Crie um arquivo lsh.py

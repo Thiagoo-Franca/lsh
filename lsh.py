@@ -1,12 +1,15 @@
 import random
 #variaveis globais
 
-
 tabelaHashingBaldes = [[] for _ in range(101)]
+
 vocabulario = {
-    "aa": 0, "ab": 1, "ac": 2,
-    "ba": 3, "bb": 4, "bc": 5,
-    "ca": 7, "cb": 8, "cc": 9,
+    "aa": 0, "ab":1, "ac": 2, "ad": 3, "ae": 4, "af": 5,
+    "ba": 6, "bb": 7, "bc": 8, "bd": 9, "be": 10, "bf": 11,
+    "ca": 12, "cb": 13, "cc": 14, "cd": 15, "ce": 16, "cf": 17,
+    "da": 18, "db": 19, "dc": 20, "dd": 21, "de": 22, "df": 23,
+    "ea": 24, "eb": 25, "ec": 26, "ed": 27, "ee": 28, "ef": 29,
+    "fa": 30, "fb": 31, "fc": 32, "fd": 33, "fe": 34, "ff": 35,
     }
 
 n = len(vocabulario) 
@@ -31,10 +34,11 @@ def calcular_jaccard(palavra1, palavra2):
 # Função para comparar todas as palavras em um balde usando a similaridade de Jaccard
 def comparar_balde_lsh(balde):
     n = len(balde)
-    
+        
     if n == 1:
         print("O balde contém apenas uma palavra!")
         return
+    
     for i in range(n):
         for j in range(i + 1, n):
             palavra1 = balde[i]
@@ -59,15 +63,15 @@ def lsh(palavra):
             
     for k in range(len(hash_bitmap)):
         if hash_bitmap[k] == 1:
-            min_hash_bitmap[(random.randint(0, 51)) % n] = 1 #gerar um valor aleatório para cada shingle presente na palavra
+            min_hash_bitmap[(random.randint(0, 100)) * i % n] = 1 #gerar um valor aleatório para cada shingle presente na palavra
                 
-    menores = [float('inf')] * 20 #inicializa a lista de menores com infinito
+    menores = [float('inf')] * 30 #inicializa a lista de menores com infinito
 
     for i in range(len(min_hash_bitmap)):
         if min_hash_bitmap[i] == 1: 
-            hashes = [(random.randrange(0, 100) * i) % n for _ in range(20)] #Gera funções aleatórias para cada shingle
+            hashes = [(random.randrange(0, 100) * i) % n for _ in range(30)] #Gera funções aleatórias para cada shingle
 
-            for j in range(20):
+            for j in range(30):
                 if hashes[j] < menores[j]: #se o valor gerado for menor que o valor atual, substitui
                     menores[j] = hashes[j] 
     assinatura = menores
@@ -79,24 +83,29 @@ def lsh(palavra):
     for i in range(0, len(assinatura), banda_size):
         bandas.append(assinatura[i:i + banda_size])
 
-    hash_bandas = {(random.randint(0, 102)) % 101 for _ in range(len(bandas))}
+    hash_bandas = {(random.randint(0, 200)) % 101 for _ in range(len(bandas))}
     
     for hash_banda in hash_bandas:
         tabelaHashingBaldes[hash_banda].append(palavra)
-        
-lsh("aabaababaa")
-lsh("aaabababaa")
-lsh("bbbbbcbacc")
-lsh("bbbbbbbbbb")
-lsh("bccaccaccc")
-lsh("ccccacccaa")
-lsh("acbbcacaca")
-lsh("aababaacaa")
-lsh("aaaaaaaaab")
-lsh("aaaaaccaaa")
-lsh("ababababab")
-lsh("ababababbb")
+    return    
 
+#testes
+lsh("abaaacadda")
+lsh("ababbcadda")
+lsh("babacbbaab")
+lsh("bcbcacbcbb")
+lsh("accdbbcdbc")
+lsh("ddeeffabba")
+lsh("bcbcbcbcdc")
+lsh("acacacacac")
+lsh("aaaeaaaffa")
+lsh("ffabacbcbc")
+lsh("abbadaccac")
+lsh("acaddfdaca")
+lsh("ababababab")
+lsh("abbcbacbbd")
+lsh("abadaffeae")
+    
 print(tabelaHashingBaldes)
 
 # Testando a função com o balde específico
